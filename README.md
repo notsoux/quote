@@ -11,7 +11,7 @@ node bin/www
 ##Usage
 ```http://localhost:3000/quote```
 
-###Note
+##Note
 The app is based upon:
  - es6 
  - node 6.x
