@@ -9,6 +9,8 @@ const routes = require('./routes/index');
 const quote = require('./routes/quote');
 
 const constant = require( './constant/Constant');
+const dao = require( './dao/dao');
+
 const app = express();
 
 // view engine setup
@@ -41,7 +43,8 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     switch( err.code) {
-      case constant.QUOTE_DATA_STILL_NOT_AVAILABLE:{
+      case constant.QUOTE_DATA_STILL_NOT_AVAILABLE:
+      case constant.DB_CONNECTION_STILL_NOT_AVAILABLE:{
         res.render('quote_not_available.jade', {message: 'I\'d like to tell you something...but I forgot everything!'});
         break;
       }
