@@ -30,6 +30,7 @@ var quoteFileUtils = {
             return callback( null, data);
         }
         let err = Error( constant.QUOTE_DATA_STILL_NOT_AVAILABLE);
+        err.code = constant.QUOTE_DATA_STILL_NOT_AVAILABLE;
         callback( err, null);
     }
 }

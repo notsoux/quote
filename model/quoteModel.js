@@ -1,12 +1,10 @@
-var quoteFileUtil = require( '../util/quoteFileUtil');
-var constant = require( '../constant/Constant');
+const quoteFileUtil = require( '../util/quoteFileUtil');
 
-let quoteList;
 var quoteModel = {
     randomQuote:function( callback){
         quoteFileUtil.getData( function( err, data){
             if( err){
-                callback( Error( constant.QUOTE_DATA_STILL_NOT_AVAILABLE), null);
+                callback( err, null);
             }
             let quoteIndex = Math.round( Math.random() * data.length);
             let quote = data[ quoteIndex];
