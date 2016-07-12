@@ -11,9 +11,12 @@ const quote = require('./routes/quote');
 const constant = require( './constant/Constant');
 const dao = require( './dao/dao');
 const response_util = require('./util/response_util');
+const quoteFileParse = require('./util/quoteFileUtil');
 
 dao.connect( function(){
+  quoteFileParse.parse( "./data/quotes.csv", function(){
 
+  });
 });
 
 const app = express();

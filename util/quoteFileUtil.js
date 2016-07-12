@@ -5,26 +5,28 @@ const constant = require('../constant/Constant');
 let dataAvailable = false;
 let data = [];
 
-var stream = fs.createReadStream("./data/quotes.csv");
-
-var csvStream = csv( )
-    .on("data", function(csvData){
-        let mappedData = {
-            id: csvData[0],
-            quote: csvData[1],
-            author: csvData[2]
-        };
-        data.push( mappedData);
-    })
-    .on("end", function(){
-        console.log("done");
-        dataAvailable = true;
-    });
-
-stream.pipe(csvStream);
-
-
 var quoteFileUtils = {
+    parse: function( csvFilePath, callback){
+
+        var stream = fs.createReadStream( csvFilePath);
+
+        var csvStream = csv( )
+            .on("data", function(csvData){
+                let mappedData = {
+                    id: csvData[0],
+                    quote: csvData[1],
+                    author: csvData[2]
+                };
+                data.push( mappedData);
+            })
+            .on("end", function(){
+                console.log("done");
+                dataAvailable = true;
+                callback();
+            });
+
+        stream.pipe(csvStream);
+    },
     getData: function( callback){
         if( dataAvailable){
             return callback( null, data);
