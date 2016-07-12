@@ -10,6 +10,11 @@ const quote = require('./routes/quote');
 
 const constant = require( './constant/Constant');
 const dao = require( './dao/dao');
+const response_util = require('./util/response_util');
+
+dao.connect( function(){
+
+});
 
 const app = express();
 
@@ -45,7 +50,7 @@ if (app.get('env') === 'development') {
     switch( err.code) {
       case constant.QUOTE_DATA_STILL_NOT_AVAILABLE:
       case constant.DB_CONNECTION_STILL_NOT_AVAILABLE:{
-        res.render('quote_not_available.jade', {message: 'I\'d like to tell you something...but I forgot everything!'});
+        response_util.noQuote( res);//res.render('quote_not_available.jade', {message: 'I\'d like to tell you something...but I forgot everything!'});
         break;
       }
       default:
