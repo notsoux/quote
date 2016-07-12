@@ -11,7 +11,6 @@ var dao = {
         console.log(`mongodb connection url -> ${url}`);
         MongoClient.connect(url, function(err, _db) {
             assert.equal(null, err);
-            console.log(`Connected correctly to server. -> ${db}`);
             //db.close();
             db = _db;
             callback( err);
