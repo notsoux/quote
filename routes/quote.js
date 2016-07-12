@@ -1,7 +1,9 @@
 
 var quoteModel = require('../model/quoteModel');
 var dao = require( '../dao/dao');
+
 const sendfileUtil = require('../util/sendfileUtil');
+const response_util = require( '../util/response_util');
 
 var express = require('express');
 var router = express.Router();
@@ -10,8 +12,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   quoteModel.randomQuote( function( err, data){
     if( err){
-      throw err; }
-    else {
+      throw err;
+    } else {
       res.render('quote', {quote: data});
     }
   })
@@ -20,7 +22,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/from_db', function(req, res, next) {
   quoteModel.randomQuoteFromDb( function( data){
-    res.render('quote', {quote: data});
+      if( data !== undefined) {
+          res.render('quote', {quote: data});
+      } else {
+          response_util.noQuote( res);
+      }
   })
 
 });
