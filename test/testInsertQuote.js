@@ -1,4 +1,4 @@
-var assert = require('chai');
+
 var should = require('chai');
 var assert = require('assert');
 var request = require('supertest');
@@ -70,8 +70,8 @@ describe('Add Quote', function() {
                             res.should.have.status(200);
 
                             //check if quote contains quote / author inserted
-                            assert.notEqual( -1, res.text.indexOf( QUOTE_VAL));
-                            assert.notEqual( -1, res.text.indexOf( AUTHOR_VAL));
+                            assert.notEqual( res.text.indexOf( QUOTE_VAL), -1);
+                            assert.notEqual( res.text.indexOf( AUTHOR_VAL), -1);
                             done();
                         });
                 });

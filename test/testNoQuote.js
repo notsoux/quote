@@ -31,7 +31,7 @@ describe('No Quote', function() {
                     }
                     //console.log(`res.text -> ${res.text}`);
                     res.should.have.status(200);
-                    assert.notEqual( -1, res.text.indexOf( constant.QUOTE_NOT_AVAILABLE_MESSAGE));
+                    assert.notEqual( res.text.indexOf( constant.QUOTE_NOT_AVAILABLE_MESSAGE), -1);
                     done();
                 });
         })
